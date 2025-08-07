@@ -15,7 +15,7 @@ const HeroSection: React.FC = () => {
           <Logo />
         </div>
         
-        <div className="grid lg:grid-cols-2 gap-12 items-center mt-24 lg:mt-0">
+        <div className="grid lg:grid-cols-2 gap-12 items-center mt-32 lg:mt-20">
           {/* Left Side - Text Content */}
           <div className="space-y-8 text-center lg:text-left">
             <div className="space-y-6">
@@ -30,7 +30,10 @@ const HeroSection: React.FC = () => {
             </div>
             
             <div className="space-y-4">
-              <button className="btn-accent text-lg md:text-xl w-full sm:w-auto">
+              <button 
+                onClick={() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })}
+                className="btn-accent text-lg md:text-xl w-full sm:w-auto"
+              >
                 Присоединиться к списку ожидания
               </button>
               

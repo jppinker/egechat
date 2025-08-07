@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
           
           {/* Copyright */}
           <div className="text-foreground/50 text-sm">
-            © 2024 EGEChat. Все права защищены.
+            © 2025 EGEChat. Все права защищены.
           </div>
         </div>
       </div>

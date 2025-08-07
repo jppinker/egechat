@@ -18,7 +18,7 @@ const WaitlistSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 px-4 md:px-8 relative">
+    <section id="waitlist" className="py-20 px-4 md:px-8 relative">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/5 to-transparent"></div>
       
