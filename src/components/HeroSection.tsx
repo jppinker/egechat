@@ -10,8 +10,8 @@ const HeroSection: React.FC = () => {
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-brand-secondary/5 rounded-full blur-3xl animate-float" style={{animationDelay: '1s'}}></div>
       
       <div className="container mx-auto max-w-7xl relative z-10">
-        {/* Logo at top-left */}
-        <div className="absolute top-8 left-8">
+        {/* Centered Logo */}
+        <div className="flex justify-center mb-16">
           <Logo />
         </div>
         
