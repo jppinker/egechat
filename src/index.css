@@ -1,42 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* EGEChat Design System - Math Education Platform */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Main Colors */
+    --background: 240 10% 4.3%; /* Dark background #0B0B0B */
+    --foreground: 0 0% 94.1%; /* Light text #F0F0F0 */
+    --white: 0 0% 100%; /* Pure white #FFFFFF */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Brand Colors */
+    --brand-primary: 264 100% 47.5%; /* #3A00F2 */
+    --brand-secondary: 272 100% 50%; /* #8C00FF */
+    --brand-accent: 51 100% 50%; /* #FFD300 */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(264 100% 47.5%), hsl(272 100% 50%));
+    --gradient-text: linear-gradient(135deg, hsl(264 100% 47.5%), hsl(272 100% 50%));
+    --gradient-glow: linear-gradient(135deg, hsl(264 100% 47.5% / 0.3), hsl(272 100% 50% / 0.3));
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* UI Elements */
+    --card: 240 5% 7.8%; /* Slightly lighter than bg */
+    --card-foreground: 0 0% 94.1%;
+    --card-border: 240 5% 15%; /* Subtle border */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --input: 240 5% 12%; /* Input background */
+    --input-border: 240 5% 20%; /* Input border */
+    --input-foreground: 0 0% 94.1%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --button-primary: var(--gradient-primary);
+    --button-accent: 51 100% 50%; /* Yellow accent */
+    --button-hover: 272 100% 55%; /* Lighter purple for hover */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Shadows & Effects */
+    --shadow-glow: 0 0 40px hsl(264 100% 47.5% / 0.3);
+    --shadow-card: 0 10px 30px -10px hsl(240 10% 3% / 0.5);
+    --shadow-button: 0 4px 20px hsl(264 100% 47.5% / 0.4);
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Animation */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --radius: 16px;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +109,100 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  .gradient-text {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer components {
+  /* Button Variants */
+  .btn-accent {
+    @apply bg-brand-accent text-background font-semibold px-8 py-4 rounded-2xl;
+    @apply hover:brightness-110 transform hover:scale-105;
+    @apply transition-all duration-300 ease-out;
+    @apply shadow-[0_4px_20px_hsl(var(--brand-accent)_/_0.4)];
+  }
+
+  .btn-primary {
+    @apply font-semibold px-8 py-4 rounded-2xl text-white;
+    @apply hover:scale-105 transform;
+    @apply transition-all duration-300 ease-out;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-button);
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, hsl(272 100% 55%), hsl(280 100% 60%));
+  }
+
+  /* Card Components */
+  .feature-card {
+    @apply bg-card border border-card-border rounded-2xl p-6;
+    @apply hover:border-brand-primary/30 hover:shadow-lg;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:transform hover:scale-105;
+    background: hsl(var(--card));
+    border-color: hsl(var(--card-border));
+    box-shadow: var(--shadow-card);
+  }
+
+  .feature-card:hover {
+    box-shadow: 0 20px 40px -15px hsl(var(--brand-primary) / 0.2);
+  }
+
+  /* Input Styles */
+  .input-primary {
+    @apply bg-input border border-input-border text-input-foreground;
+    @apply rounded-xl px-4 py-3 text-lg;
+    @apply focus:outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/30;
+    @apply transition-all duration-300;
+    background: hsl(var(--input));
+    border-color: hsl(var(--input-border));
+    color: hsl(var(--input-foreground));
+  }
+
+  /* Glow Effects */
+  .glow-primary {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Typography */
+  .heading-xl {
+    @apply text-5xl md:text-6xl font-bold leading-tight;
+  }
+
+  .heading-lg {
+    @apply text-3xl md:text-4xl font-bold;
+  }
+
+  .heading-md {
+    @apply text-2xl md:text-3xl font-semibold;
+  }
+
+  /* Animations */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { box-shadow: 0 0 20px hsl(var(--brand-primary) / 0.2); }
+    to { box-shadow: 0 0 40px hsl(var(--brand-primary) / 0.4); }
   }
 }
