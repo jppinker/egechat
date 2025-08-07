@@ -4,30 +4,48 @@ import { Mail, CheckCircle } from 'lucide-react';
 const WaitlistSection: React.FC = () => {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      // In a real app, this would submit to a backend
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setEmail('');
-      }, 3000);
+    setError(null);
+
+    if (!email) return;
+
+    try {
+      const res = await fetch('https://formspree.io/f/mdkdpzzj', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (res.ok) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setEmail('');
+        }, 3000);
+      } else {
+        setError('Произошла ошибка. Попробуй ещё раз.');
+      }
+    } catch (err) {
+      setError('Сервер недоступен. Попробуй позже.');
     }
   };
 
   return (
     <section id="waitlist" className="py-20 px-4 md:px-8 relative">
-      {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/5 to-transparent"></div>
-      
+
       <div className="container mx-auto max-w-4xl text-center relative z-10">
         <div className="bg-card border border-card-border rounded-3xl p-8 md:p-12 shadow-2xl">
           <h2 className="heading-lg text-white mb-6">
             Стань одним из первых пользователей!
           </h2>
-          
+
           <p className="text-xl text-foreground/80 mb-10 max-w-3xl mx-auto leading-relaxed">
             Мы готовим платформу к запуску. Введи свою почту — и получи ранний доступ к бесплатной версии, 
             чтобы помочь нам улучшить её и подготовиться к экзамену!
@@ -39,6 +57,7 @@ const WaitlistSection: React.FC = () => {
                 <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-foreground/50 w-5 h-5" />
                 <input
                   type="email"
+                  name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Твоя почта"
@@ -46,13 +65,17 @@ const WaitlistSection: React.FC = () => {
                   required
                 />
               </div>
-              
+
               <button
                 type="submit"
                 className="btn-accent w-full text-xl py-4"
               >
                 Хочу попробовать первым!
               </button>
+
+              {error && (
+                <p className="text-red-500 text-sm mt-2">{error}</p>
+              )}
             </form>
           ) : (
             <div className="max-w-md mx-auto bg-brand-primary/10 border border-brand-primary/30 rounded-2xl p-6">
