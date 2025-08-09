@@ -20,12 +20,12 @@ const HeroSection: React.FC = () => {
           <div className="space-y-8 text-center lg:text-left">
             <div className="space-y-6">
               <h1 className="heading-xl text-white leading-tight">
-                Твой личный помощник по математике для{' '}
+                Твой цифровой наставник по математике для{' '}
                 <span className="gradient-text">ОГЭ и ЕГЭ</span>
               </h1>
               
               <p className="text-xl md:text-2xl text-foreground/80 max-w-2xl">
-                EGEChat — это не просто бот. Это твой персональный учитель с ИИ, который поможет достичь максимального балла на экзамене.
+                EGEChat — это выгодная альтернатива репетитору по математике.
               </p>
             </div>
             
