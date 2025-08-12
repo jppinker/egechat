@@ -16,10 +16,11 @@ const VideoSection: React.FC = () => {
           <div className="relative bg-card border border-card-border rounded-3xl p-4 shadow-2xl">
             <div className="aspect-video rounded-2xl overflow-hidden">
               <iframe
-                src="https://www.youtube.com/embed/Z1dsSOTZ2oA"
-                title="EGEChat Demo"
+                src="https://vk.com/video_ext.php?oid=-232034222&id=456239025&hd=2"
+                title="EGEChat Demo — VK Video"
                 className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                loading="lazy"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
                 allowFullScreen
               ></iframe>
             </div>
