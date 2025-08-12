@@ -10,7 +10,7 @@ const Logo: React.FC<LogoProps> = ({ className = "" }) => {
       {/* Logo Symbol */}
       <div className="relative">
         <img 
-          src="https://casohrqgydyyvcclqwqm.supabase.co/storage/v1/object/public/images/animeguy.jpg" 
+          src="https://casohrqgydyyvcclqwqm.supabase.co/storage/v1/object/public/images/egechat_logo.jpg" 
           alt="EGEChat Logo" 
           className="w-12 h-12 md:w-16 md:h-16"
         />
